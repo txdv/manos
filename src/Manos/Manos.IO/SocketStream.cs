@@ -237,7 +237,7 @@ namespace Manos.IO {
 			}
 
 			if (state == SocketState.Open) {
-				Read ();
+				ReadFunction ();
 				return;
 			}
 		}
@@ -258,7 +258,7 @@ namespace Manos.IO {
 			}
 		}
 
-		private void Read ()
+		private void ReadFunction ()
 		{
 			int size;
 			int error;
@@ -270,12 +270,11 @@ namespace Manos.IO {
 			}
 
 			if (size == 0) {
-				read_callback (this, ReadChunk, 0, 0);
+				FireReadEvent (this, ReadChunk, 0, 0);
 				Close ();
 				return;
 			}
-
-			read_callback (this, ReadChunk, 0, size);
+			FireReadEvent (this, ReadChunk, 0, size);
 		}
 
 		internal int Send (ByteBufferS [] buffers, int length, out int error)
