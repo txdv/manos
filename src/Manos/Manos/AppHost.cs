@@ -116,7 +116,8 @@ namespace Manos
 			app = application;
 			
 			started = true;
-			server = new HttpServer (HandleTransaction, ioloop);
+			server = new HttpServer (ioloop);
+			server.Transaction += HandleTransaction;
 			
 			server.Listen (IPAddress.ToString (), port);
 

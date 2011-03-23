@@ -45,7 +45,6 @@ namespace Manos.Http {
 
 		public static readonly string ServerVersion;
 
-		private HttpConnectionCallback callback;
 		private IOLoop ioloop;
 		SocketStream socket;
 		private bool closeOnEnd;
@@ -56,9 +55,8 @@ namespace Manos.Http {
 			ServerVersion = "Manos/" + v.ToString ();
 		}
 
-		public HttpServer (HttpConnectionCallback callback, IOLoop ioloop, bool closeOnEnd = false )			
+		public HttpServer (IOLoop ioloop, bool closeOnEnd = false)
 		{
-			this.callback = callback;
 			this.ioloop = ioloop;
 			this.closeOnEnd = closeOnEnd;
 		}
@@ -90,8 +88,11 @@ namespace Manos.Http {
 
 		private void ConnectionAccepted (object sender, ConnectionAcceptedEventArgs args)
 		{
-			var t = HttpTransaction.BeginTransaction (this, args.Stream, callback, closeOnEnd);
+			HttpTransaction.BeginTransaction (this, args.Stream, Transaction, closeOnEnd);
 		}
+		
+		public event HttpConnectionCallback Transaction;
+		
 	}
 }
 
