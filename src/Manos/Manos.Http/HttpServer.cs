@@ -55,6 +55,10 @@ namespace Manos.Http {
 			ServerVersion = "Manos/" + v.ToString ();
 		}
 
+		public HttpServer (bool closeOnEnd = false) : this (IOLoop.Instance, closeOnEnd)
+		{
+		}
+		
 		public HttpServer (IOLoop ioloop, bool closeOnEnd = false)
 		{
 			this.ioloop = ioloop;

@@ -62,10 +62,18 @@ namespace Manos.IO {
 		private static readonly int MAX_ACCEPT = 100;
 		private SocketInfo [] accept_infos;
 
+		public SocketStream () : this (IOLoop.Instance)
+		{
+		}
+		
 		public SocketStream (IOLoop ioloop) : base (ioloop)
 		{
 		}
 
+		public SocketStream (SocketInfo info) : this(info, IOLoop.Instance)
+		{
+		}
+		
 		public SocketStream (SocketInfo info, IOLoop ioloop) : base (ioloop)
 		{
 			fd = info.fd;

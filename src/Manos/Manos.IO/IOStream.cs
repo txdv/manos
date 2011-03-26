@@ -56,6 +56,10 @@ namespace Manos.IO {
 		private IWriteOperation current_write_op;
 		private Queue<IWriteOperation> write_ops = new Queue<IWriteOperation> ();
 
+		public IOStream () : this (IOLoop.Instance)
+		{
+		}
+		
 		public IOStream (IOLoop ioloop)
 		{
 			this.ioloop = ioloop;
