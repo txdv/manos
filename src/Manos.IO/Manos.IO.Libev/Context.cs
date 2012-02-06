@@ -138,6 +138,11 @@ namespace Manos.IO.Libev
 		{
 			return new UdpSocket (this, family);
 		}
+
+		public override IStdin OpenStdin ()
+		{
+			return new Stdin (this);
+		}
 	}
 }
 

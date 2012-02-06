@@ -116,6 +116,8 @@
     <Compile Include="Manos.IO\Errors.cs" />
     <Compile Include="Manos.IO\IOException.cs" />
     <Compile Include="Manos.IO\OpenMode.cs" />
+    <Compile Include="Manos.IO\IStdin.cs" />
+    <Compile Include="Manos.IO.Libev\Stdin.cs" />
   </ItemGroup>
   <Target Name="ListSources">
     <Message Text="@(Compile)" Importance="High" />
