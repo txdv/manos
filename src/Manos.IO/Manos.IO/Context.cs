@@ -304,6 +304,14 @@ namespace Manos.IO
 		/// Address family the socket belongs to.
 		/// </param>
 		public abstract IUdpSocket CreateUdpSocket (AddressFamily family);
+
+		/// <summary>
+		/// Opens the standard input descriptor for reading and readyness events.
+		/// </summary>
+		/// <returns>
+		/// The stdin.
+		/// </returns>
+		public abstract IStdin OpenStdin();
 	}
 }
 

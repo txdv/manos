@@ -117,6 +117,8 @@
     <Compile Include="Manos.IO\Errors.cs" />
     <Compile Include="Manos.IO\IOException.cs" />
     <Compile Include="Manos.IO\OpenMode.cs" />
+    <Compile Include="Manos.IO\IStdin.cs" />
+    <Compile Include="Manos.IO.Libev\Stdin.cs" />
     <Compile Include="Manos.IO.Poll\Context.cs" />
     <Compile Include="Manos.IO.Poll\AsyncWatcher.cs" />
     <Compile Include="Manos.IO.Poll\CheckWatcher.cs" />
