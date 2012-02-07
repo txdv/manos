@@ -16,9 +16,11 @@ namespace Manos.IO.Poll
 			pipe = new Pipe ();
 			data = Marshal.AllocHGlobal(1);
 			iowatcher = new IOWatcher (pipe.Out.ToInt32(), PollEvents.POLLIN, loop, (io, events) => {
-				pipe.Read (data, 1);
-				if (callback != null) {
-					callback ();
+				if ((events & PollEvents.POLLIN) > 0) {
+					pipe.Read (data, 1);
+					if (callback != null) {
+						callback ();
+					}
 				}
 			});
 		}
