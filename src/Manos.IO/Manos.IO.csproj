@@ -130,6 +130,7 @@
     <Compile Include="Manos.IO.Poll\Watcher.cs" />
     <Compile Include="Manos.IO.Poll\PrepareWatcher.cs" />
     <Compile Include="Manos.IO\Backend.cs" />
+    <Compile Include="Manos.IO.Poll\Stdin.cs" />
   </ItemGroup>
   <Target Name="ListSources">
     <Message Text="@(Compile)" Importance="High" />
