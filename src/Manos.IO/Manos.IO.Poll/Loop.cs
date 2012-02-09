@@ -83,6 +83,7 @@ namespace Manos.IO.Poll
 				pollmap[i] = iowatchers[i].pollfd;
 			}
 
+			var io = iowatchers.ToArray();
 
 			if (timeout != 0 && timeouts.Count > 0) {
 				int t = (int)((timeouts.Keys[0] - now.Ticks) / TimeSpan.TicksPerMillisecond);
@@ -135,13 +136,14 @@ namespace Manos.IO.Poll
 				timer.Call();
 			}
 
-			for (int i = 0; i < count; i++) {
-				iowatchers[i].Dispatch(pollmap[i].revents);
+			for (int i = 0; i < pollmap.Length; i++) {
+				io[i].Dispatch(pollmap[i].revents);
 			}
 
 			foreach (var idle in idles) {
 				idle.Call();
 			}
+
 		}
 	}
 }
