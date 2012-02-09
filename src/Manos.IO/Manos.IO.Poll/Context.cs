@@ -1,16 +1,19 @@
 using System;
+using Manos.IO;
 
 namespace Manos.IO.Poll
 {
 	class Context : Manos.IO.Context
 	{
 		private bool running;
+		private IAsyncWatcher runningWatcher;
 
 		public Loop Loop { get; protected set; }
 
 		public Context ()
 		{
 			Loop = new Loop ();
+			runningWatcher = CreateAsyncWatcher(() => { });
 		}
 
 		protected override void Dispose (bool disposing)
@@ -40,6 +43,7 @@ namespace Manos.IO.Poll
 		public override void Stop ()
 		{
 			running = false;
+			runningWatcher.Send ();
 		}
 
 		public override ITimerWatcher CreateTimerWatcher (TimeSpan timeout, TimeSpan repeat, Action cb)
